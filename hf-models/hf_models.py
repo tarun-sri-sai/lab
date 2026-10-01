@@ -9,7 +9,8 @@ def main():
 
     models = api.list_models(
         expand=["gguf", "likes", "createdAt", "lastModified", "downloads"],
-        num_parameters="min:6B,max:10B"
+        num_parameters="min:6B,max:10B",
+        sort="created_at"
     )
 
     with open("hf-out.jsonl", "w") as f:
@@ -20,7 +21,7 @@ def main():
             ago_6mo = datetime.now(timezone.utc) - timedelta(weeks=26)
 
             if model.created_at < ago_6mo:
-                continue
+                break
 
             print(
                 json.dumps({
