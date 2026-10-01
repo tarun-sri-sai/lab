@@ -9,7 +9,7 @@ def main():
 
     models = api.list_models(
         expand=["gguf", "likes", "createdAt", "lastModified", "downloads"],
-        num_parameters="min:6B,max:8B"
+        num_parameters="min:6B,max:10B"
     )
 
     with open("hf-out.jsonl", "w") as f:
