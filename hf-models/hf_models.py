@@ -16,13 +16,16 @@ def main():
     with open("hf-out.jsonl", "w") as f:
         for model in models:
             if not model.gguf:
+                print(f"NON_GGUF\t{model.id} does not support GGUF")
                 continue
 
             ago_6mo = datetime.now(timezone.utc) - timedelta(weeks=26)
 
             if model.created_at < ago_6mo:
+                print(f"VERY_OLD\t{model.id} is older than {ago_6mo}. skipping...")
                 break
 
+            print(f"ELIGIBLE\t{model.id}")
             print(
                 json.dumps({
                     "modelId": model.id, 
