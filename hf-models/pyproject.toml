@@ -1,0 +1,18 @@
+[project]
+name = "hf-models"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "huggingface-hub>=2.1.1",
+    "hf",
+    "mcp>=2.3.0",
+]
+
+[tool.uv.sources]
+hf = { workspace = true }
+
+[tool.uv.workspace]
+members = [
+    "hf",
+]

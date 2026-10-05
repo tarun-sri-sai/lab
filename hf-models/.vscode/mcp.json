@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "huggingface": {
+      "type": "stdio",
+      "command": "uv",
+      "args": ["run", "python", "main.py", "mcp"]
+    }
+  }
+}

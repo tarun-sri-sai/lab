@@ -1,1 +1,5 @@
-hf-out.jsonl
+# ignore inputs/outputs
+data
+
+# ignore python bytecode files
+*.pyc

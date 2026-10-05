@@ -1,10 +1,12 @@
-import os
 import json
+import os
 from datetime import datetime, timedelta, timezone
 from huggingface_hub import HfApi
+from pathlib import Path
+from argparse import Namespace
 
 
-def main():
+def update_models(_: Namespace) -> None:
     api = HfApi(token=os.environ["HF_TOKEN"])
 
     models = api.list_models(
@@ -13,7 +15,7 @@ def main():
         sort="created_at"
     )
 
-    with open("hf-out.jsonl", "w") as f:
+    with open(Path("data") / "hf-out.jsonl", "w") as f:
         for model in models:
             if not model.gguf:
                 print(f"NON_GGUF\t{model.id} does not support GGUF")
@@ -37,7 +39,3 @@ def main():
                 }),
                 file=f
             )
-
-
-if __name__ == "__main__":
-    main()
